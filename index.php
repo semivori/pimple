@@ -146,6 +146,10 @@ class App
         $curl = new Curl(self::PIMPLE_BASE_URL);
         $html = $curl->exec();
 
+        echo 'html';
+        echo $html;
+        exit();
+
         $matchPageParser = new MainPageParser($html);
         $linksForBroadcastPages = $matchPageParser->getLinksForBroadcastPages();
         $linksForBroadcasts = [];
