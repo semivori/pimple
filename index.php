@@ -83,6 +83,7 @@ class MainPageParser
             exit();
         }
 
+        echo 1; exit();
         $pattern = '#<div class="streams-day">' . $todayDayNumber . '(.*)#';
         preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
