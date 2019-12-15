@@ -20,9 +20,7 @@ Thumbs.db
 
 # composer itself is not needed
 composer.phar
-composer.lock
 /app/composer.phar
-/app/composer.lock
 
 # vagrant
 #vagrant
