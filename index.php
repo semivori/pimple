@@ -64,7 +64,6 @@ class MainPageParser
     {
         $partWithTodayMatches = $this->findPartWithTodayMatches();
         if ($partWithTodayMatches) {
-            echo 4; exit();
             return $this->findLinksForBroadcastPages($partWithTodayMatches);
         }
         return [];
@@ -94,6 +93,7 @@ class MainPageParser
             preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
             $endPosition = isset($matches[1]) ? $matches[1][1] : null;
+            return $this->html;
             return mb_strcut($this->html, $startPosition, $endPosition);
         } else {
             return '';
