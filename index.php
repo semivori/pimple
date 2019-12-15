@@ -86,7 +86,6 @@ class MainPageParser
         $pattern = '#<div class="streams-day">' . $todayDayNumber . '(.*)#';
         preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
-        echo 2; exit();
         if (isset($matches[1])) {
             $startPosition = $matches[1][1];
 
@@ -94,6 +93,7 @@ class MainPageParser
             preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
             $endPosition = isset($matches[1]) ? $matches[1][1] : null;
+            echo 3; exit();
             return mb_strcut($this->html, $startPosition, $endPosition);
         } else {
             return '';
