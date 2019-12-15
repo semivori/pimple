@@ -83,10 +83,10 @@ class MainPageParser
             exit();
         }
 
-        echo 1; exit();
         $pattern = '#<div class="streams-day">' . $todayDayNumber . '(.*)#';
         preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
+        echo 2; exit();
         if (isset($matches[1])) {
             $startPosition = $matches[1][1];
 
