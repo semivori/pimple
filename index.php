@@ -106,9 +106,9 @@ class MainPageParser
     protected function findLinksForBroadcastPages($partWithTodayMatches)
     {
         $pattern = '#<a href="/broadcast/football/(.*)" rel="bookmark">(.*)</a>#';
+        echo 4; exit();
         $numberOfMatches = preg_match_all($pattern, $this->html, $matches);
 
-        echo 4; exit();
         if ($numberOfMatches > 0) {
             return array_map(function ($link, $name) {
                 return [
