@@ -22,6 +22,7 @@ class Curl
      */
     public function exec()
     {
+        return '<div class="promodetails">Тариф Старт<div>VPS на Linux</div></div>';
         if ($this->url) {
             usleep(500000);
             $curl = curl_init($this->url);
