@@ -93,7 +93,6 @@ class MainPageParser
             preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
 
             $endPosition = isset($matches[1]) ? $matches[1][1] : null;
-            echo 3; exit();
             return mb_strcut($this->html, $startPosition, $endPosition);
         } else {
             return '';
@@ -109,6 +108,7 @@ class MainPageParser
         $pattern = '#<a href="/broadcast/football/(.*)" rel="bookmark">(.*)</a>#';
         $numberOfMatches = preg_match_all($pattern, $this->html, $matches);
 
+        echo 4; exit();
         if ($numberOfMatches > 0) {
             return array_map(function ($link, $name) {
                 return [
