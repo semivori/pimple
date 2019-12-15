@@ -153,7 +153,6 @@ class App
         foreach ($linksForBroadcastPages as $item) {
             $curl = new Curl(self::PIMPLE_BASE_URL . $item['link']);
             $html = $curl->exec();
-            echo $html; exit();
 
             $matchPageParser = new MatchPageParser($html);
             $linksForBroadcasts[] = [
