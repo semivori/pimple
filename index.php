@@ -64,6 +64,7 @@ class MainPageParser
     {
         $partWithTodayMatches = $this->findPartWithTodayMatches();
         if ($partWithTodayMatches) {
+            echo 4; exit();
             return $this->findLinksForBroadcastPages($partWithTodayMatches);
         }
         return [];
@@ -106,7 +107,6 @@ class MainPageParser
     protected function findLinksForBroadcastPages($partWithTodayMatches)
     {
         $pattern = '#<a href="/broadcast/football/(.*)" rel="bookmark">(.*)</a>#';
-        echo 4; exit();
         $numberOfMatches = preg_match_all($pattern, $this->html, $matches);
 
         if ($numberOfMatches > 0) {
