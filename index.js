@@ -2,7 +2,7 @@
 
 
 const getData = async () => {
-    const res = await fetch('https://sv-fas.herokuapp.com');
+    const res = await fetch('https://sv-fas.herokuapp.com/pimple.php');
     return await res.json();
 };
 
