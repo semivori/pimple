@@ -2,20 +2,26 @@
 
 
 const getData = async () => {
-    const res = await fetch('https://sv-fas.herokuapp.com/pimple.php');
+    const res = await fetch('pimple.php');
     return await res.json();
 };
 
 const copyToClipboard = {
     click: function (e) {
         const input = document.createElement('input');
-        input.value = e.currentTarget.dataset.copy;
-        console.log(e.target.dataset.copy);
+        const btn = e.currentTarget;
+        const btns = document.getElementsByClassName('js__pimple__matches_copy_link-btn');
+        input.value = btn.dataset.copy;
         document.body.append(input);
         input.select();
         document.execCommand("copy");
         input.remove();
 
+        for (let i = 0; i < btns.length; i++) {
+            const item = btns.item(i);
+            item.innerHTML = 'Copy';
+        }
+        btn.innerHTML = 'Copied';
     }
 };
 
@@ -26,21 +32,27 @@ const addDataToTable = (data) => {
     spinners.classList.add("d-none");
 
     data.forEach(function (item, key) {
-        let row = table.insertRow(key);
-        let cellName = row.insertCell(0);
-        let cellLink = row.insertCell(1);
-        let cellBtn = row.insertCell(2);
-        let btn = document.createElement('button');
-        btn.type = 'button';
-        btn.classList.add('btn', 'btn-secondary', 'btn-sm', 'js__copy_btn');
-        btn.dataset.copy = item.acestream;
-        btn.innerText = 'Copy';
-        btn.addEventListener('click', copyToClipboard.click);
-
+        const row = table.insertRow(key);
+        const cellName = row.insertCell(0);
+        const cellLink = row.insertCell(1);
+        const cellBtn = row.insertCell(2);
 
         cellName.innerHTML = item.name;
-        cellLink.innerHTML = item.acestream;
-        cellBtn.append(btn);
+
+        if (item.acestream) {
+            const btnCopy = document.createElement('button');
+            btnCopy.type = 'button';
+            btnCopy.classList.add('btn', 'btn-secondary', 'btn-sm', 'js__copy_btn', 'js__pimple__matches_copy_link-btn');
+            btnCopy.dataset.copy = item.acestream;
+            btnCopy.innerText = 'Copy';
+            btnCopy.addEventListener('click', copyToClipboard.click);
+            cellBtn.append(btnCopy);
+
+            const link = document.createElement('a');
+            link.href = item.acestream;
+            link.innerText = 'Open';
+            cellLink.append(link);
+        }
     });
 };
 

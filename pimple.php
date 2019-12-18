@@ -129,15 +129,19 @@ class MatchPageParser
      */
     public function getLinkForAceStreamBroadcast()
     {
-        return 'link';
-        $pattern = '##';
-        preg_match($pattern, $this->html, $matches, PREG_OFFSET_CAPTURE);
+        $pattern = '#href="(acestream://.*)">#';
+        preg_match($pattern, $this->html, $matches);
+        if (isset($matches[1])) {
+            return $matches[1];
+        }
+        return null;
     }
 }
 
 class App
 {
     const PIMPLE_BASE_URL = 'https://www.pimpletv.ru/category/broadcast/football/';
+    const PIMPLE_MATCH_URL = 'https://www.pimpletv.ru/broadcast/football/';
 
     public function init()
     {
@@ -151,7 +155,7 @@ class App
         $linksForBroadcasts = [];
 
         foreach ($linksForBroadcastPages as $item) {
-            $curl = new Curl(self::PIMPLE_BASE_URL . $item['link']);
+            $curl = new Curl(self::PIMPLE_MATCH_URL . $item['link']);
             $html = $curl->exec();
 
             $matchPageParser = new MatchPageParser($html);
