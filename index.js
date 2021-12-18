@@ -37,7 +37,7 @@ const addDataToTable = (data) => {
         const cellLink = row.insertCell(1);
         const cellBtn = row.insertCell(2);
 
-        cellName.innerHTML = item.name;
+        cellName.innerHTML = `${item.time}, ${item.name}, ${item.channel}`;
 
         if (item.acestream) {
             const btnCopy = document.createElement('button');

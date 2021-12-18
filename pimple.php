@@ -136,6 +136,32 @@ class MatchPageParser
         }
         return null;
     }
+
+    /**
+     * @return string
+     */
+    public function getBroadcastTime()
+    {
+        $pattern = '#<p itemprop="startDate".*, (.*)</b>#';
+        preg_match($pattern, $this->html, $matches);
+        if (isset($matches[1])) {
+            return $matches[1];
+        }
+        return null;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBroadcastChannel()
+    {
+        $pattern = '#<dt>Телеканал:</dt>\n<dd>(.*)</dd>#';
+        preg_match($pattern, $this->html, $matches);
+        if (isset($matches[1])) {
+            return $matches[1];
+        }
+        return null;
+    }
 }
 
 class App
@@ -162,6 +188,8 @@ class App
             $linksForBroadcasts[] = [
                 'name' => $item['name'],
                 'acestream' => $matchPageParser->getLinkForAceStreamBroadcast(),
+                'time' => $matchPageParser->getBroadcastTime(),
+                'channel' => $matchPageParser->getBroadcastChannel(),
             ];
         }
 
